@@ -3,76 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solana Wallet Connect</title>
+    <title>Solana Web App</title>
 </head>
 <body>
-    <h1>Solana Wallet Connect</h1>
-    <button id="connectButton">Connect to Solana Wallet</button>
-    <form id="tokenForm" style="display: none;">
-        <label for="publicKey">Public Key:</label>
-        <input type="text" id="publicKey" name="publicKey" readonly><br><br>
-        <button id="mintButton" type="submit">Mint Token</button>
-    </form>
-
-    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.9.5/dist/web3.min.js"></script>
-    <script>
-        const connectButton = document.getElementById('connectButton');
-        const tokenForm = document.getElementById('tokenForm');
-        const publicKeyInput = document.getElementById('publicKey');
-        const mintButton = document.getElementById('mintButton');
-
-        connectButton.addEventListener('click', async () => {
-            try {
-                if (!window.solana || !window.solana.isPhantom) {
-                    alert('Phantom wallet not detected. Please install Phantom wallet.');
-                    return;
-                }
-
-                const provider = window.solana;
-                await provider.connect();
-
-                if (provider.isConnected) {
-                    const publicKey = provider.publicKey.toString();
-                    console.log('Connected to Phantom wallet:', publicKey);
-                    publicKeyInput.value = publicKey;
-                    tokenForm.style.display = 'block';
-                } else {
-                    alert('Connection to Phantom wallet failed.');
-                }
-            } catch (error) {
-                console.error('Error connecting to Phantom wallet:', error);
-                alert('Error connecting to Phantom wallet. Please try again later.');
-            }
-        });
-
-        mintButton.addEventListener('click', async (event) => {
-            event.preventDefault();
-
-            const publicKeyValue = publicKeyInput.value;
-
-            if (!publicKeyValue) {
-                alert('Invalid public key.');
-                return;
-            }
-
-            try {
-                const response = await fetch('/mint-token', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        publicKey: publicKeyValue
-                    })
-                });
-
-                const data = await response.json();
-                alert(data.message);
-            } catch (error) {
-                console.error('Error minting token:', error);
-                alert('Error minting token. Please try again later.');
-            }
-        });
-    </script>
+    <h1>Solana Web App</h1>
+    <button id="createTokenBtn">Create Token</button>
+    <script src="index.js"></script>
 </body>
 </html>
