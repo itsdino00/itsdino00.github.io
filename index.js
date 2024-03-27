@@ -1,3 +1,5 @@
+import { createToken } from './tokenCreator.js';
+
 // Phantom wallet integration
 const connectPhantom = async () => {
     try {
