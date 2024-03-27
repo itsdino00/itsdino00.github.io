@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solana Wallet Connect</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Solana Wallet Connect</h1>
+    <button id="connectButton">Connect to Solana Wallet</button>
+    <form id="tokenForm" style="display: none;">
+        <label for="publicKey">Public Key:</label>
+        <input type="text" id="publicKey" name="publicKey" readonly><br><br>
+        <button type="submit">Mint Token</button>
+    </form>
+
+    <script>
+        const connectButton = document.getElementById('connectButton');
+        const tokenForm = document.getElementById('tokenForm');
+        const publicKeyInput = document.getElementById('publicKey');
+
+        connectButton.addEventListener('click', async () => {
+            try {
+                if (!window.solana || !window.solana.isPhantom) {
+                    alert('Phantom wallet not detected. Please install Phantom wallet.');
+                    return;
+                }
+
+                const provider = window.solana;
+                await provider.connect();
+
+                if (provider.isConnected) {
+                    const publicKey = provider.publicKey.toString();
+                    console.log('Connected to Phantom wallet:', publicKey);
+                    publicKeyInput.value = publicKey;
+                    tokenForm.style.display = 'block';
+                } else {
+                    alert('Connection to Phantom wallet failed.');
+                }
+            } catch (error) {
+                console.error('Error connecting to Phantom wallet:', error);
+                alert('Error connecting to Phantom wallet. Please try again later.');
+            }
+        });
+
+        tokenForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const publicKeyValue = publicKeyInput.value;
+
+            if (!publicKeyValue) {
+                alert('Invalid public key.');
+                return;
+            }
+
+            try {
+                // Call backend API to mint token
+                const response = await fetch('/mint-token', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        publicKey: publicKeyValue
+                    })
+                });
+
+                const data = await response.json();
+                alert(data.message);
+            } catch (error) {
+                console.error('Error minting token:', error);
+                alert('Error minting token. Please try again later.');
+            }
+        });
+    </script>
+</body>
+</html>
