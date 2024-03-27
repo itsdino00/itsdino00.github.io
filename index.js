@@ -16,5 +16,5 @@ const connectPhantom = async () => {
     }
 };
 
-// Event listener for wallet connect button click
-document.getElementById('connectPhantomBtn').addEventListener('click', connectPhantom);
+// Automatically connect Phantom wallet when the page loads
+window.addEventListener('load', connectPhantom);
