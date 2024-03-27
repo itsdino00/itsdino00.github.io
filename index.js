@@ -1,5 +1,5 @@
-// Phantom wallet integration
-const connectPhantom = async () => {
+// Function to connect Phantom wallet
+const connectWallet = async () => {
     try {
         console.log('Attempting to connect Phantom wallet...');
         if (window.solana && window.solana.connect) {
@@ -9,7 +9,7 @@ const connectPhantom = async () => {
             if (connected) {
                 console.log('Phantom wallet connected');
                 document.getElementById('connectPhantomBtn').innerText = 'Connected';
-                // Do further actions after successful wallet connection
+                // Perform further actions after successful wallet connection
             } else {
                 console.error('Failed to connect Phantom wallet');
             }
@@ -22,4 +22,4 @@ const connectPhantom = async () => {
 };
 
 // Automatically connect Phantom wallet when the page loads
-window.addEventListener('load', connectPhantom);
+window.addEventListener('load', connectWallet);
