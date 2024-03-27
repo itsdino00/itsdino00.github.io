@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solana Wallet Connect</title>
-    <style>
-        /* Add your CSS styles here */
-    </style>
 </head>
 <body>
     <h1>Solana Wallet Connect</h1>
@@ -17,6 +14,7 @@
         <button type="submit">Mint Token</button>
     </form>
 
+    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.9.5/dist/web3.min.js"></script>
     <script>
         const connectButton = document.getElementById('connectButton');
         const tokenForm = document.getElementById('tokenForm');
@@ -57,7 +55,6 @@
             }
 
             try {
-                // Call backend API to mint token
                 const response = await fetch('/mint-token', {
                     method: 'POST',
                     headers: {
