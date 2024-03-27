@@ -11,7 +11,7 @@
     <form id="tokenForm" style="display: none;">
         <label for="publicKey">Public Key:</label>
         <input type="text" id="publicKey" name="publicKey" readonly><br><br>
-        <button type="submit">Mint Token</button>
+        <button id="mintButton" type="submit">Mint Token</button>
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.9.5/dist/web3.min.js"></script>
@@ -19,6 +19,7 @@
         const connectButton = document.getElementById('connectButton');
         const tokenForm = document.getElementById('tokenForm');
         const publicKeyInput = document.getElementById('publicKey');
+        const mintButton = document.getElementById('mintButton');
 
         connectButton.addEventListener('click', async () => {
             try {
@@ -44,7 +45,7 @@
             }
         });
 
-        tokenForm.addEventListener('submit', async (event) => {
+        mintButton.addEventListener('click', async (event) => {
             event.preventDefault();
 
             const publicKeyValue = publicKeyInput.value;
