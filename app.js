@@ -1,4 +1,3 @@
-// app.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const { Connection, PublicKey, Transaction, SystemProgram } = require('@solana/web3.js');
@@ -20,7 +19,7 @@ app.post('/mint-token', async (req, res) => {
         // For simplicity, let's assume we are minting a SPL token with name and symbol provided
         const mintTokenInstruction = SystemProgram.createAccount({
             fromPubkey: new PublicKey(publicKey),
-            newAccountPubkey: new PublicKey(publicKey), // Same as fromPubkey for simplicity
+            newAccountPubkey: new PublicKey(publicKey), // Provide the pubkey for new token account
             lamports: 1000000, // Initial lamports
             space: 165, // Size of the new account
             programId: new PublicKey('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA'), // SPL token program ID
