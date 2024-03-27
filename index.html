@@ -6,7 +6,17 @@
     <title>Solana Web App</title>
     <style>
         #connectPhantomBtn {
-            display: none; /* Hide the button */
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #connectPhantomBtn:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -15,10 +25,8 @@
     
     <!-- Wallet Integration Button -->
     <button id="connectPhantomBtn">Connect Phantom Wallet</button>
-    <button id="createTokenBtn">Create Token</button>
     
     <script src="walletIntegration.js"></script>
-    <script src="tokenCreator.js"></script>
     <script src="index.js"></script>
 </body>
 </html>
