@@ -1,5 +1,3 @@
-// tokenCreator.js
-
 // Function to create a token
 const createToken = async () => {
     try {
@@ -26,5 +24,4 @@ const createToken = async () => {
     }
 };
 
-// Export the createToken function
 export { createToken };
