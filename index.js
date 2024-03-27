@@ -1,16 +1,27 @@
 // Phantom wallet integration
 const connectPhantom = async () => {
     try {
-        const isPhantomInstalled = await window.solana.isPhantomInstalled();
-        if (isPhantomInstalled) {
-            const connected = await window.solana.connect();
-            if (connected) {
-                console.log('Phantom wallet connected');
-                document.getElementById('connectPhantomBtn').innerText = 'Connected';
-                // Do further actions after successful wallet connection
+        console.log('Attempting to connect Phantom wallet...');
+        if (window.solana && window.solana.isPhantomInstalled) {
+            const isPhantomInstalled = await window.solana.isPhantomInstalled();
+            console.log('Is Phantom installed?', isPhantomInstalled);
+
+            if (isPhantomInstalled) {
+                const connected = await window.solana.connect();
+                console.log('Is connected?', connected);
+
+                if (connected) {
+                    console.log('Phantom wallet connected');
+                    document.getElementById('connectPhantomBtn').innerText = 'Connected';
+                    // Do further actions after successful wallet connection
+                } else {
+                    console.error('Failed to connect Phantom wallet');
+                }
+            } else {
+                console.error('Phantom wallet not installed');
             }
         } else {
-            console.error('Phantom wallet not installed');
+            console.error('Solana object not found or isPhantomInstalled method not available');
         }
     } catch (error) {
         console.error('Error connecting Phantom wallet:', error);
