@@ -1,12 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
-import { useAutoConnect } from "../contexts/AutoConnectProvider";
-import NetworkSwitcher from "./NetworkSwitcher";
 
 const AppBar: React.FC = (props) => {
-  const { autoConnect, setAutoConnect } = useAutoConnect();
-
   const handleWalletConnect = () => {
     // Add your wallet connect functionality here
     console.log('Wallet connected!');
