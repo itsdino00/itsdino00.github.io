@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { useWalletMultiButton } from '@solana/wallet-adapter-react-ui';
 
 function CustomConnectButton() {
     const [walletModalConfig, setWalletModalConfig] = useState<{
@@ -63,3 +64,5 @@ function CustomConnectButton() {
         </div>
     );
 }
+
+export default CustomConnectButton;
