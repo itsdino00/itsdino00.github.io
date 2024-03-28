@@ -1,22 +1,33 @@
-// Wallet Adapter Initializ
-const wallet = new WalletAdapter(SolanaWalletAdapter.providers.phantom);
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
-// Connect Button Click Event
-document.getElementById('connectButton').onclick = async () => {
-    try {
-        // Connect to Solana Wallet
-        await wallet.connect();
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+}
 
-        // Update Wallet Status
-        updateWalletStatus('Wallet connected!');
-    } catch (error) {
-        console.error('Error connecting to wallet:', error);
-        updateWalletStatus('Error connecting to wallet.');
-    }
-};
+h1 {
+    color: #333;
+}
 
-// Update Wallet Status Function
-function updateWalletStatus(status) {
-    const walletStatusElement = document.getElementById('walletStatus');
-    walletStatusElement.textContent = status;
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#walletStatus {
+    margin-top: 20px;
+    font-weight: bold;
 }
