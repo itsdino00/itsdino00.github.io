@@ -1,4 +1,5 @@
 import React from 'react';
+import CustomConnectButton from './CustomConnectButton';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       </header>
       <main>
         {/* Content */}
+        <CustomConnectButton />
       </main>
       <footer>
         {/* Footer content */}
