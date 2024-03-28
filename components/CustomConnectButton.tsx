@@ -42,7 +42,7 @@ function CustomConnectButton() {
     }, [buttonState, onDisconnect, onConnect, onSelectWallet]);
 
     return (
-        <div className="custom-connect-button" style={{ position: 'absolute', top: '10px', left: '10px' }}>
+        <div className="custom-connect-button">
             <button disabled={buttonState === 'connecting' || buttonState === 'disconnecting'} onClick={handleClick}>
                 {label}
             </button>
