@@ -1,8 +1,10 @@
+import React, { useState, useCallback } from 'react';
+
 function CustomConnectButton() {
-    const [walletModalConfig, setWalletModalConfig] = useState<Readonly<{
-        onSelectWallet(walletName: WalletName): void;
-        wallets: Wallet[];
-    }> | null>(null);
+    const [walletModalConfig, setWalletModalConfig] = useState<{
+        onSelectWallet(walletName: string): void;
+        wallets: { adapter: { name: string } }[];
+    } | null>(null);
     const { buttonState, onConnect, onDisconnect, onSelectWallet } = useWalletMultiButton({
         onSelectWallet: setWalletModalConfig,
     });
@@ -27,24 +29,24 @@ function CustomConnectButton() {
     const handleClick = useCallback(() => {
         switch (buttonState) {
             case 'connected':
-                return onDisconnect;
+                return onDisconnect();
             case 'connecting':
             case 'disconnecting':
                 break;
             case 'has-wallet':
-                return onConnect;
+                return onConnect();
             case 'no-wallet':
-                return onSelectWallet;
-                break;
+                return onSelectWallet();
         }
     }, [buttonState, onDisconnect, onConnect, onSelectWallet]);
+
     return (
-        <>
+        <div className="custom-connect-button" style={{ position: 'absolute', top: '10px', left: '10px' }}>
             <button disabled={buttonState === 'connecting' || buttonState === 'disconnecting'} onClick={handleClick}>
                 {label}
             </button>
             {walletModalConfig ? (
-                <Modal>
+                <div>
                     {walletModalConfig.wallets.map((wallet) => (
                         <button
                             key={wallet.adapter.name}
@@ -56,7 +58,8 @@ function CustomConnectButton() {
                             {wallet.adapter.name}
                         </button>
                     ))}
-                </Modal>
+                </div>
             ) : null}
-        </>
+        </div>
     );
+}
