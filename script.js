@@ -1,4 +1,4 @@
-// Wallet Adapter Initialize
+// Wallet Adapter Initializ
 const wallet = new WalletAdapter(SolanaWalletAdapter.providers.phantom);
 
 // Connect Button Click Event
