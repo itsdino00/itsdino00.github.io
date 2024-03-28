@@ -3,30 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solana Web App</title>
-    <style>
-        #connectPhantomBtn {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        #connectPhantomBtn:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Solana Wallet Integration</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Solana Web App</h1>
-    
-    <!-- Wallet Integration Button -->
-    <button id="connectPhantomBtn">Connect Phantom Wallet</button>
-    
-    <script src="walletIntegration.js"></script>
-    <script src="index.js"></script>
+    <div class="container">
+        <h1>Solana Wallet Integration</h1>
+        <button id="connectButton">Connect to Solana Wallet</button>
+        <div id="walletStatus"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@solana/wallet-adapter@1.2.3/dist/index.iife.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
