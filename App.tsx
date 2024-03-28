@@ -1,5 +1,5 @@
 import React from 'react';
-import CustomConnectButton from './CustomConnectButton';
+import CustomConnectButton from './components/CustomConnectButton';
 
 function App() {
   return (
